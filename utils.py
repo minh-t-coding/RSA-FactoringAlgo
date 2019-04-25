@@ -1,4 +1,3 @@
-
 # found this code
 def xgcd(a, b):
     """return (g, x, y) such that a*x + b*y = g = gcd(a, b)"""
