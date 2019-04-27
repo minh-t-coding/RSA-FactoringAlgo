@@ -10,6 +10,8 @@ def xgcd(a, b):
         x0, x1 = x1, x0 - q * x1
     return b, x0, y0
 
+# THIS IS UNNECESSARY, JUST USE pow(b,e,m) BUILT IN PYTHON FUNCTION
+# I WASTED TIME ON THIS FOR NOTHING
 def modexp(b,e,m):
     """
     computes b^e mod m
