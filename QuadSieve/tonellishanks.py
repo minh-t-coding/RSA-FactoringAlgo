@@ -10,6 +10,10 @@ def legendre(a, p):
  
 def tonelli(n, p):
     assert legendre(n, p) == 1, "not a square (mod p)"
+    
+    if p==2:
+        return n%2
+    
     q = p - 1
     s = 0
     while q % 2 == 0:
@@ -17,6 +21,7 @@ def tonelli(n, p):
         s += 1
     if s == 1:
         return pow(n, (p + 1) // 4, p)
+    z = 2
     for z in range(2, p):
         if p - 1 == legendre(z, p):
             break
@@ -27,6 +32,7 @@ def tonelli(n, p):
     t2 = 0
     while (t - 1) % p != 0:
         t2 = (t * t) % p
+        i = 1
         for i in range(1, m):
             if (t2 - 1) % p == 0:
                 break
@@ -37,8 +43,8 @@ def tonelli(n, p):
         t = (t * c) % p
         m = i
     return r
- 
-if 1:
+
+if 0:
     ttest = [(10, 13), (56, 101), (1030, 10009), (44402, 100049),
 	     (665820697, 1000000009), (881398088036, 1000000000039),
              (41660815127637347468140745042827704103445750172002, 10**50 + 577)]

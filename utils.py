@@ -8,20 +8,18 @@ def xgcd(a, b):
         x0, x1 = x1, x0 - q * x1
     return b, x0, y0
 
-# THIS IS UNNECESSARY, JUST USE pow(b,e,m) BUILT IN PYTHON FUNCTION
-# I WASTED TIME ON THIS FOR NOTHING
-def modexp(b,e,m):
-    """
-    computes b^e mod m
-    """
-    b=b%m
-    result=1
-    val=b
-    binexp=bin(e)[2:]
-    
-    for i in range(len(binexp)):
-        if int(binexp[-i-1])==1:
-            result=result*val%m
-        val=val*val%m
+def primes(n):
+    primeList = []
+    exclusions = []
+    for i in range(2, n+1):
+        if i not in exclusions:
+            primeList.append(i)
+            for j in range(i*i, n+1, i):
+                exclusions.append(j)
+    return primeList
 
-    return result
+def readPrimes(filePath):
+    file=open(filePath)
+    primes=file.read().split()
+    return [int(p) for p in primes]
+
