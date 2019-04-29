@@ -1,3 +1,5 @@
+import random
+
 # found this code
 def xgcd(a, b):
     """return (g, x, y) such that a*x + b*y = g = gcd(a, b)"""
@@ -22,4 +24,53 @@ def readPrimes(filePath):
     file=open(filePath)
     primes=file.read().split()
     return [int(p) for p in primes]
+
+def genPrime(b, r):
+    """
+    b: number of bits for output prime
+    r: rounds of primality testing
+    """
+
+    while(True):
+        # Pick random odd integer n in the range [2^(b-1), 2^b-1]
+        x = random.randint(pow(2,b-1),pow(2,b)-1)
+        xbin = int(bin(x)[2:])  
+        xbin |= 1
+        num = int(str(xbin), 2)
+        if (testPrime(num, r)):
+            return num
+
+def testPrime(n, r):
+    """
+    Testing for primality using miller-rabin test
+    Returns False if n is composite, True if "probably prime"
+    pseudo-code taken from https://en.wikipedia.org/wiki/Miller-Rabin_primality_test
+    """
+    if n == 2:
+        return True
+    if (n <= 1) or (n % 2 == 0):
+        return False
+    
+    # Get n as 2^r * d + 1
+    r = 0
+    d = n-1
+    while (d % 2 == 0):
+        r += 1
+        d //= 2
+    
+    # Witness Loop
+    for _ in range(r):
+        a = random.randint(2,n-2)
+        x = pow(a,d,n)
+        if (x == 1) or (x == n-1):
+            continue
+        for _ in range (r-1):
+            x = pow(x,2,n)
+            if (x == n-1):
+                break   # Go to next round
+        else:
+            return False
+    return True
+            
+print(genPrime(250,40))
 
