@@ -11,6 +11,9 @@ def xgcd(a, b):
     return b, x0, y0
 
 def primes(n):
+    """
+    returns list of primes less than n
+    """
     primeList = []
     exclusions = []
     for i in range(2, n+1):
