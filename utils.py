@@ -76,4 +76,3 @@ def testPrime(n, r):
     return True
             
 #print(genPrime(250,40))
-
