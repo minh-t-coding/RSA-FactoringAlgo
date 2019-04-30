@@ -8,7 +8,7 @@ import quadSieve
 import pollards
 
 bitlength = 5
-for i in range(3):
+for i in range(4):
     p = utils.genPrime(bitlength, 40)
     q = utils.genPrime(bitlength, 40)
     n = p*q

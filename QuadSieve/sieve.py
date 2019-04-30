@@ -111,21 +111,18 @@ primes = [
     9833, 9839, 9851, 9857, 9859, 9871, 9883, 9887, 9901, 9907, 9923, 9929,
     9931, 9941, 9949, 9967, 9973
 ]
-smoothBound=500
-upperSieveBound=500
 
-def sieve(n):
-    smoothBound=math.ceil(n/math.log(n))
-    upperSieveBound=4*math.floor(math.sqrt(n))
+
+def sieve(n,upperSieveBound):
     sievePrimes=[p for p in primes if legendre(n,p)==1]
     
     sqrtn=math.ceil(math.sqrt(n))
     initialSieve=[pow(x+sqrtn,2)-n for x in range(upperSieveBound)]
-
+    """
     expvector=[[]]*len(initialSieve)
     for i in range(len(expvector)):
         expvector[i]=[0]*len(sievePrimes)
-
+    """
     finalSieve=copy.deepcopy(initialSieve)
     for primeIndex in range(len(sievePrimes)):
         p=sievePrimes[primeIndex]
@@ -141,11 +138,17 @@ def sieve(n):
                 i+=p
         for i in divisibleIndices:
             finalSieve[i]//=p
-            expvector[i][primeIndex]=1
+            #expvector[i][primeIndex]=1
             
-    smoothNumbers=[(i+sqrtn,initialSieve[i],expvector[i]) for i in range(len(finalSieve)) if finalSieve[i]==1]
+    smoothNumbers=[(i+sqrtn,initialSieve[i],generateExpVector(initialSieve[i],sievePrimes)) for i in range(len(finalSieve)) if finalSieve[i]==1]
     return (smoothNumbers,sievePrimes)
 
 
-
-        
+def generateExpVector(num,possiblePrimes):
+    expvector=[0]*len(possiblePrimes)
+    currentNum=num
+    for i in range(len(possiblePrimes)):
+        while currentNum%possiblePrimes[i]==0:
+            expvector[i]+=1
+            currentNum//=possiblePrimes[i]
+    return expvector
