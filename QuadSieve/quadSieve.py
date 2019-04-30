@@ -30,5 +30,5 @@ def quadSieve(n):
         if factor!=1 and factor!=n:
             return {factor,n//factor}
 
-print(quadSieve(15347))
-print(quadSieve(61*71))
+#print(quadSieve(15347))
+#print(quadSieve(61*71))
