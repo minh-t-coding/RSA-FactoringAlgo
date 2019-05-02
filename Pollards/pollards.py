@@ -10,6 +10,7 @@ def factor(num, b):
     num: odd number to factor
     b: smoothness cap
     """
+    
     primeList = utils.primes(b)
     m = 1
 
@@ -30,12 +31,19 @@ def factor(num, b):
 
 def pollards(num):
     b = 1
+    fails = 0
     while True:
         res = factor(num, b)
         if not(res == -1 or res == -2):
             break
         if res == -1:
             b += 1
+            fails += 1
         if res == -2:
             b -= 1
+            fails += 1
+        if fails == 50:
+            return None
     return {res, num//res}
+
+#print(pollards(41*61))

@@ -8,7 +8,7 @@ import quadSieve
 import pollards
 
 bitlength = 5
-for i in range(4):
+for i in range(20):
     p = utils.genPrime(bitlength, 40)
     q = utils.genPrime(bitlength, 40)
     n = p*q
@@ -29,5 +29,5 @@ for i in range(4):
     print("Time for Quad. Sieve algorithm to factor n: {}s".format(qtime))
     print("Quad. Sieve result: {}\n\n".format(q_res))
 
-    bitlength *= 2
+    bitlength += 1
     
