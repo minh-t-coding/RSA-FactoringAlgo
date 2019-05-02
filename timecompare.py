@@ -15,7 +15,9 @@ outWriter.writerow({name: name for name in fieldNames})
 
 bitlength = 6
 sampleSize = 10
-for i in range(7):
+niterations = 10
+bitincrement = 2
+for i in range(niterations):
     polFailures = quadFailures = 0
     polMaxTime = quadMaxTime = 0
 
@@ -57,6 +59,6 @@ for i in range(7):
                  "# Pollard's Failures": polFailures,
                  "# QuadSieve Failures": quadFailures}
     outWriter.writerow(writeData)
-    bitlength += 2
+    bitlength += bitincrement
     
 out.close()

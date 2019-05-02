@@ -4,8 +4,9 @@ from math import gcd
 
 def quadSieve(n):
     factor=1
-    upperSieveBound=100
+    upperSieveBound=50
     while factor==1 or factor==n:
+        upperSieveBound*=2
         sieveResult=sieve.sieve(n,upperSieveBound)
         smoothNumbers=sieveResult[0]
         primes=sieveResult[1]
@@ -15,6 +16,9 @@ def quadSieve(n):
             expVec=[i%2 for i in numTup[2]]
             matrix.append(expVec)
 
+        if len(matrix)==0:
+            continue
+        
         solutions=linearSolverMod2.solve(matrix)
 
         for solution in solutions:
@@ -30,8 +34,6 @@ def quadSieve(n):
                 sieveVal*=pow(primes[i],sieveExpVec[i])
         
             factor=gcd(abs(originalSquare-sieveVal),n)
-            
-        upperSieveBound*=2
         
     return {factor,n//factor}
 

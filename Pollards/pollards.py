@@ -42,7 +42,7 @@ def pollards(num):
         if res == -2:
             b -= 1
             fails += 1
-        if fails == 50:
+        if fails == 1000:
             return None
     return {res, num//res}
 
