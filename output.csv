@@ -1,0 +1,8 @@
+Prime Bit Length,Max Pollard's Runtime (s),Max QuadSieve Runtime (s),# Pollard's Failures,# QuadSieve Failures
+6,0.00100,4.19767,0,0
+11,0.02194,8.85010,0,0
+16,1.09507,3.19386,2,0
+21,0.05590,19.18537,3,0
+26,0.07394,22.72050,4,0
+31,0.00000,46.31431,5,0
+36,0.00000,113.40801,5,0
