@@ -14,7 +14,9 @@ def genKeyPair(klen):
     N = p*q
     phi = (p-1)*(q-1)
     print("phi: {}".format(phi))
-    d = utils.xgcd(e,phi)[1]
+    result = utils.xgcd(e,phi)
+    print(result)
+    d = result[1]
     if d < 0:
         d += phi
         
@@ -32,4 +34,6 @@ message = 420
 cipher = pow(message,e,N)
 
 decrypt = pow(cipher,d,N)
+print(N)
+print("keys: {},{}".format(e,d))
 print(decrypt)
